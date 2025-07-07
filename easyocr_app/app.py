@@ -3,6 +3,8 @@ import easyocr
 from PIL import Image
 import numpy as np
 import streamlit.components.v1 as components
+import sys
+import contextlib
 
 ga_id = st.secrets["GA_ID"]
 
@@ -28,8 +30,10 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Gambar yang di-upload", use_container_width=True)
 
-    reader = easyocr.Reader(['id'], verbose=False)
-    result = reader.readtext(np.array(image), detail=0)
+    with st.spinner("🔍 Memproses gambar, mohon tunggu..."):
+        with contextlib.redirect_stdout(sys.__stdout__), contextlib.redirect_stderr(sys.__stderr__):
+            reader = easyocr.Reader(['id'], verbose=False)
+            result = reader.readtext(np.array(image), detail=0)
 
     st.subheader("Hasil OCR:")
     st.write(" ".join(result))
