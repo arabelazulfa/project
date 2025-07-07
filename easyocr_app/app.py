@@ -8,23 +8,15 @@ import contextlib
 import os
 import io
 
-ga_id = st.secrets["GA_ID"]
-
-# Sisipkan Google Analytics Tracking Script
-ga_code = f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{ga_id}');
-  gtag('event', 'page_view');
-</script>
+gtm_id = st.secrets["GTM_ID"]
+gtm_code = f"""
+<!-- Google Tag Manager -->
+<iframe src="https://www.googletagmanager.com/ns.html?id={gtm_id}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
 """
 
 
-components.html(ga_code, height=100, width=300)
+components.html(gtm_code, height=100, width=300)
 
 st.title("OCR Dokumen Bahasa Indonesia dengan EasyOCR")
 
