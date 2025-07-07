@@ -5,7 +5,7 @@ import numpy as np
 import streamlit.components.v1 as components
 
 ga_id = st.secrets["GA_ID"]
-ga_code = """
+ga_code = f"""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
 <script>
