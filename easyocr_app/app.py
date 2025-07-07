@@ -13,6 +13,7 @@ ga_code = f"""
   function gtag(){{{{dataLayer.push(arguments);}}}}
   gtag('js', new Date());
   gtag('config', '{ga_id}');
+  gtag('event', 'page_view');
 </script>
 """
 
