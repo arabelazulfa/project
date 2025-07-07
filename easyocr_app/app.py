@@ -28,7 +28,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Gambar yang di-upload", use_container_width=True)
 
-    reader = easyocr.Reader(['id'])
+    reader = easyocr.Reader(['id'], verbose=False)
     result = reader.readtext(np.array(image), detail=0)
 
     st.subheader("Hasil OCR:")
