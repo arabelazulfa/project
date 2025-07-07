@@ -4,17 +4,18 @@ from PIL import Image
 import numpy as np
 import streamlit.components.v1 as components
 
+ga_id = st.secrets["GA_ID"]
 ga_code = """
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCP4Y8NNVE"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-TCP4Y8NNVE');
+  gtag('config', '{ga_id}');
 </script>
 """
-components.html(ga_code, height=0, width=0)
+components.html(ga_code, height=100, width=300)
 
 st.title("OCR Dokumen Bahasa Indonesia dengan EasyOCR")
 
