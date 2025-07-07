@@ -16,12 +16,13 @@ ga_code = f"""
 <script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){{{{dataLayer.push(arguments);}}}}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
   gtag('config', '{ga_id}');
   gtag('event', 'page_view');
 </script>
 """
+
 
 components.html(ga_code, height=100, width=300)
 
