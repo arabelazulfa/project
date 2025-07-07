@@ -5,6 +5,8 @@ import numpy as np
 import streamlit.components.v1 as components
 import sys
 import contextlib
+import os
+import io
 
 ga_id = st.secrets["GA_ID"]
 
@@ -31,7 +33,8 @@ if uploaded_file is not None:
     st.image(image, caption="Gambar yang di-upload", use_container_width=True)
 
     with st.spinner("🔍 Memproses gambar, mohon tunggu..."):
-        with contextlib.redirect_stdout(sys.__stdout__), contextlib.redirect_stderr(sys.__stderr__):
+        # Redirect stdout & stderr supaya user nggak lihat log PyTorch/EasyOCR
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             reader = easyocr.Reader(['id'], verbose=False)
             result = reader.readtext(np.array(image), detail=0)
 
